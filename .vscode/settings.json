@@ -23,5 +23,13 @@
   "editor.suggest.snippetsPreventQuickSuggestions": true,
   "editor.suggest.preview": true,
   "editor.suggest.shareSuggestSelections": true,
-  "cSpell.showAutocompleteSuggestions": true
+  "cSpell.showAutocompleteSuggestions": true,
+  "tailwindCSS.classAttributes": [
+    "className"
+  ],
+  "editor.suggest.showClasses": false,
+  "breadcrumbs.showClasses": false,
+  "outline.showClasses": false,
+  "editor.suggest.localityBonus": true,
+  "extensions.closeExtensionDetailsOnViewChange": true
 }
