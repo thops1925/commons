@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NavLinks } from "../constant/index";
-import Button from "/components//Button";
+import Button from "./Button";
+import AuthProviders from "./AuthProviders";
 
 const Navbar = () => {
-  const user = true;
+  const user = null;
   return (
-    <nav className="flex justify-between gap-4 border-b px-8 py-5 ">
+    <nav className="flex justify-between gap-4 px-8 py-5 ">
       <div className="flex flex-1 items-start justify-start">
         <Link href="/">
           <Image
@@ -14,7 +15,6 @@ const Navbar = () => {
             alt="logo"
             width={116}
             height={43}
-            alt="logo"
             className="blur-none"
           />
         </Link>
@@ -36,9 +36,10 @@ const Navbar = () => {
             </Link>
           </>
         ) : (
-          <>log out</>
+          <>
+            <AuthProviders />
+          </>
         )}
-        <Footer />
       </div>
     </nav>
   );
