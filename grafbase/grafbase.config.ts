@@ -1,4 +1,3 @@
-import { User } from 'next-auth';
 import { g, auth, config } from '@grafbase/sdk'
 
 // Welcome to Grafbase!
@@ -19,7 +18,7 @@ const User  = g.model('User',{
   avatarURL : g.url(),
   description: g.string().optional(),
   githubURL : g.url().optional(),
-  project:g.relation(()=>Project).optional()
+  project:g.relation(()=>Project).list().optional()
 })
 
 const Project = g.model('Project',{
