@@ -4,6 +4,7 @@ import { AdapterUser } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
 import jsonwebtoken from 'jsonwebtoken';
 import {JWT} from 'next-auth/jwt'
+import { SessionInterface } from "@/common";
 
 
 
@@ -22,7 +23,7 @@ export const authOptions : NextAuthOptions = {
 // },
 theme:{
     colorScheme:'light',
-    logo:'/'
+    logo:'/thops3.png'
 },
 callbacks: {
     async session({ session }) {
@@ -36,8 +37,13 @@ callbacks: {
         return false
       }
     },
-}
+},
+secret: process.env.JWT_SECRET,
 
 
 }
-// export default NextAuth(authOptions)
+
+export async function getCurrentUser() {
+    const session = await getServerSession(authOptions) as SessionInterface
+    return session
+}

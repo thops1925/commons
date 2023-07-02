@@ -3,9 +3,12 @@ import Link from "next/link";
 import { NavLinks } from "../constant/index";
 import Button from "./Button";
 import AuthProviders from "./AuthProviders";
+import { getCurrentUser } from "@/lib/session";
 
-const Navbar = () => {
-  const user = false;
+const Navbar = async () => {
+  const session = await getCurrentUser()
+
+
   return (
     <nav className="flex justify-between gap-4 px-8 py-5 ">
       <div className="flex flex-1 items-start justify-start">
@@ -28,13 +31,14 @@ const Navbar = () => {
         </ul>
       </div>
       <div className=" flex items-center justify-center gap-7 ">
-        {user ? (
+        {session?.user ? (
           <>
             {/* <ProfileMenu session={session} /> */}
 
-            <Link href="/create-project">
-              <Button title="Share work" />
-            </Link>
+            {/* <Link href="/create-project"> */}
+            {/* <Button title="Share work" /> */}
+            {/* </Link> */}
+            user
           </>
         ) : (
           <>
