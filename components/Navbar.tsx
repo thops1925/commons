@@ -15,6 +15,7 @@ const Navbar = () => {
             alt="logo"
             width={116}
             height={43}
+
             className="blur-none"
           />
         </Link>
