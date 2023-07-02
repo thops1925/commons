@@ -21,10 +21,12 @@ export const authOptions : NextAuthOptions = {
 //     async encode({secret,token}) {},
 //     async decode({secret,token}) {},
 // },
+
 theme:{
     colorScheme:'light',
-    logo:'/thops3.png'
+    logo:'/thops2.png'
 },
+
 callbacks: {
     async session({ session }) {
       return session
@@ -37,13 +39,11 @@ callbacks: {
         return false
       }
     },
-},
-secret: process.env.JWT_SECRET,
-
+}
 
 }
 
 export async function getCurrentUser() {
-    const session = await getServerSession(authOptions) as SessionInterface
+    const session = await getServerSession(authOptions) as SessionInterface;
     return session
 }
