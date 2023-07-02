@@ -5,7 +5,7 @@ import Button from "./Button";
 import AuthProviders from "./AuthProviders";
 
 const Navbar = () => {
-  const user = null;
+  const user = false;
   return (
     <nav className="flex justify-between gap-4 px-8 py-5 ">
       <div className="flex flex-1 items-start justify-start">
