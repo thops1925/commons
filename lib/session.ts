@@ -18,10 +18,24 @@ export const authOptions: NextAuthOptions = {
     })
   ],
 
-  // jwt : {
-  //     async encode({secret,token}) {},
-  //     async decode({secret,token}) {},
-  // },
+  jwt: {
+    async encode({ secret, token }) {
+      const encodedToken = jsonwebtoken.sign(
+        {
+          ...token,
+          iss: "grafbase",
+          exp: Math.floor(Date.now() / 1000) + 60 * 60,
+        },
+        secret
+      );
+
+      return encodedToken;
+    },
+    async decode({ secret, token }) {
+      const decodedToken = jsonwebtoken.verify(token!, secret);
+      return decodedToken as JWT;
+    },
+  },
 
   theme: {
     colorScheme: 'light',
@@ -41,19 +55,15 @@ export const authOptions: NextAuthOptions = {
             ...session.user, ...data?.user,
           },
         };
-
         return newSession;
-
       } catch (error: any) {
         console.error("Error retrieving user data: ", error.message);
         return session;
-
       }
-
     },
 
-    async signIn({ user }: { user: AdapterUser | User }) {
 
+    async signIn({ user }: { user: AdapterUser | User }) {
       try {
         const userExists = await getUser(user?.email as string) as { user?: UserProfile }
 

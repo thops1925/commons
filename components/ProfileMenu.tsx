@@ -11,7 +11,6 @@ import Button from "./Button";
 
 const ProfileMenu = ({ session }: { session: SessionInterface }) => {
     const [openModal, setOpenModal] = useState(false);
-    console.log(openModal)
 
     return (
         <div className="flex items-center justify-center z-10 flex-col relative">
@@ -22,7 +21,7 @@ const ProfileMenu = ({ session }: { session: SessionInterface }) => {
                             src={session.user.image}
                             width={40}
                             height={40}
-                            className="rounded-full"
+                            className="rounded-full  border-sky-500 border-2"
                             alt="user profile image"
                         />
                     )}
