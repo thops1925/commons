@@ -381,6 +381,10 @@
     }
   },
   "entryCSSFiles": {
+    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\page": {
+      "modules": [],
+      "files": []
+    },
     "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\layout": {
       "modules": [
         "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\globals.css",
@@ -389,10 +393,6 @@
       "files": [
         "static/css/app/layout.css"
       ]
-    },
-    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\page": {
-      "modules": [],
-      "files": []
     },
     "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\create-project\\page": {
       "modules": [],

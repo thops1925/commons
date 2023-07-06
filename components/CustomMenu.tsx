@@ -29,6 +29,21 @@ const CustomMenu = ({ title, state, setState, filter }: Props) => {
                         />
                     </Menu.Button>
                 </div>
+                <Menu.Items className="flex items-star justify-start  flex-col absolute left-0 mt-2 xs:min-w-[300px] w-fit max-h-64 origin-top-right rounded-xl bg-white border border-nav-border shadow-menu overflow-y-auto">
+                    {filter.map((tag) => (
+                        <Menu.Item key={tag}>
+                            <button
+                                type='button'
+                                value={tag}
+                                className='text-left w-full px-5 py-2 text-sm hover:bg-light-white-100 self-start whitespace-nowrap capitalize'
+                                onClick={(e) => setState(e.currentTarget.value)}
+                            >
+                                {tag}
+                            </button>
+                        </Menu.Item>
+                    ))}
+
+                </Menu.Items>
 
             </Menu>
         </div>

@@ -1,7 +1,7 @@
 "use client"
 import { SessionInterface } from "@/common"
 import Image from "next/image"
-import { ChangeEvent } from "react"
+import { ChangeEvent, useState } from "react"
 import FormField from "./FormField"
 import Button from "./Button"
 import CustomMenu from "./CustomMenu"
@@ -14,7 +14,8 @@ type Props = {
 
 
 const ProjectForm = ({ type, session }: Props) => {
-    const form = {
+    const [isSubmitting, setSubitting] = useState(false)
+    const [form, setForm] = useState({
         image: '',
         title: '',
         description: '',
@@ -22,16 +23,33 @@ const ProjectForm = ({ type, session }: Props) => {
         githubUrl: '',
         category: ''
 
-    }
+    })
     const handleFormSub = (e: React.FormEvent) => { }
-    const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => { }
-    const handleStateChange = (fieldName: string, value: string) => { }
+
+    const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        const file = e.target.files?.[0]
+        if (!file) return;
+        if (!file.type.includes('image')) return alert("Please upload an image file")
+        const reader = new FileReader();
+        reader.readAsDataURL(file)
+        reader.onload = () => {
+            const result = reader.result as string;
+            handleStateChange('image', result)
+        }
+    }
+    const handleStateChange = (fieldName: string, value: string) => {
+        setForm((prev) =>
+        ({
+            ...prev, [fieldName]: value
+        }))
+    }
 
     return (
         <form onSubmit={handleFormSub} className=" flex-col w-full lg:pt-24 pt-12 gap-10 text-lg max-w-5xl mx-auto flex items-start justify-start">
             <div className="flex items-start justify-start  w-full lg:min-h-[400px] min-h-[200px] relative">
                 <label htmlFor="poster" className="flex justify-center items-center z-10 text-center w-full h-full p-20 text-gray-100 border-2 border-gray-50 border-dashed">{!form.image && 'Choose a cover for your project'}</label>
-                <input type="file" id="image" accept="image/*" required={type === 'create '} className=" absolute z-30 w-full opacity-0 h-full cursor-pointer" onChange={handleChangeImage} />
+                <input type="file" id="image" accept="image/*" required={type === 'create'} className=" absolute z-30 w-full opacity-0 h-full cursor-pointer" onChange={handleChangeImage} />
                 {form.image && (
                     <Image
                         src={form?.image}
@@ -49,9 +67,15 @@ const ProjectForm = ({ type, session }: Props) => {
                 title='Category'
                 state={form.category}
                 filter={categoryFilters}
-                setState={(category) => handleStateChange('category', value)}
+                setState={(value) => handleStateChange('category', value)}
             />
-            <Button title="Submit" />
+            <Button
+                title={isSubmitting ?
+                    `${type === 'create' ? 'Creating' : 'Editing'}`
+                    : `${type === 'create' ? 'Create ' : 'Edit'}`}
+                type="submit"
+                leftIcon={isSubmitting ? '' : '/plus.svg'}
+                submitting={isSubmitting} />
         </form>
     )
 }
