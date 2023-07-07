@@ -6,6 +6,7 @@ import FormField from "./FormField"
 import Button from "./Button"
 import CustomMenu from "./CustomMenu"
 import { categoryFilters } from "@/constant"
+import { createNewProject, fetchToken } from "@/lib/actions"
 
 type Props = {
     type: string,
@@ -24,7 +25,18 @@ const ProjectForm = ({ type, session }: Props) => {
         category: ''
 
     })
-    const handleFormSub = (e: React.FormEvent) => { }
+    const handleFormSub = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setSubitting(true);
+        const { token } = await fetchToken()
+        try {
+            if (type === 'create') {
+                await createNewProject(form, session?.user?.id, token)
+            }
+        } catch (error) {
+
+        }
+    }
 
     const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
