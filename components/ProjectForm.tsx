@@ -7,6 +7,7 @@ import Button from "./Button"
 import CustomMenu from "./CustomMenu"
 import { categoryFilters } from "@/constant"
 import { createNewProject, fetchToken } from "@/lib/actions"
+import { useRouter } from "next/navigation"
 
 type Props = {
     type: string,
@@ -15,6 +16,7 @@ type Props = {
 
 
 const ProjectForm = ({ type, session }: Props) => {
+    const router = useRouter()
     const [isSubmitting, setSubitting] = useState(false)
     const [form, setForm] = useState({
         image: '',
@@ -32,8 +34,10 @@ const ProjectForm = ({ type, session }: Props) => {
         try {
             if (type === 'create') {
                 await createNewProject(form, session?.user?.id, token)
+                router.push('/')
             }
         } catch (error) {
+            console.log(error)
 
         }
     }
