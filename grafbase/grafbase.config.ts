@@ -20,17 +20,19 @@ const User = g.model('User', {
   description: g.string().optional(),
   githubUrl: g.url().optional(),
   linkedinUrl: g.url().optional(),
-  project: g.relation(() => Project).list().optional()
+  projects: g.relation(() => Project).list().optional(),
 }).auth((rules) => rules.public().read())
 
 // @ts-ignore
 const Project = g.model('Project', {
   title: g.string().length({ min: 3 }),
-  description: g.string().optional(),
+  description: g.string(),
   image: g.url(),
-  siteUrl: g.url(),
+  liveSiteUrl: g.url(),
+  githubUrl: g.url(),
   category: g.string().search(),
-  createdBy: g.relation(() => User)
+  createdBy: g.relation(() => User),
+  viewCount: g.int().default(0),
 }).auth((rules) => {
   rules.public().read()
   rules.private().create().delete().update()
