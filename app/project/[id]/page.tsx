@@ -1,5 +1,7 @@
 import { ProjectInterface } from '@/common'
 import Modal from '@/components/Modal'
+import ProjectActions from '@/components/ProjectActions'
+import RelatedProjects from '@/components/RelatedProjects'
 import { getProjectDetails } from '@/lib/actions'
 import { getCurrentUser } from '@/lib/session'
 import Image from 'next/image'
@@ -44,9 +46,11 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
                         </div>
                     </div>
                 </div>
+
+                {/* show if your the user */}
                 {session?.user?.email === projectDetails?.createdBy?.email && (
                     <div className="flex justify-end items-center gap-2">
-                        {/* <ProjectActions projectId={projectDetails?.id} /> */}
+                        <ProjectActions projectId={projectDetails?.id} />
                     </div>
                 )}
             </section>
@@ -54,7 +58,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
             <section className="mt-14">
                 <Image
                     src={`${projectDetails?.image}`}
-                    className="object-cover rounded-2xl"
+                    className="object-cover rounded-2xl blur-0"
                     width={1064}
                     height={798}
                     alt="poster"
@@ -72,7 +76,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
                     </Link>
                     <Image src="/dot.svg" width={4} height={4} alt="dot" />
                     <Link href={projectDetails?.liveSiteUrl} target="_blank" rel="noreferrer" className="flexCenter gap-2 tex-sm font-medium text-primary-purple">
-                        🚀 <span className="underline">Live Site</span>
+                        <span className="underline">Live Site</span>
                     </Link>
                 </div>
             </section>
@@ -91,7 +95,7 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
                 <span className="w-full h-0.5 bg-light-white-200" />
             </section>
 
-            {/* <RelatedProjects userId={projectDetails?.createdBy?.id} projectId={projectDetails?.id} /> */}
+            <RelatedProjects userId={projectDetails?.createdBy?.id} projectId={projectDetails?.id} />
 
         </Modal>
     )

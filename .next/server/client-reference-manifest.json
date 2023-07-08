@@ -119,6 +119,14 @@
         "chunks": [],
         "async": false
       }
+    },
+    "(app-client)/./components/ProjectActions.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/ProjectActions.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
     }
   },
   "edgeSSRModuleMapping": {},
@@ -376,6 +384,14 @@
       "name": "*",
       "chunks": [
         "app/create-project/page:static/chunks/app/create-project/page.js"
+      ],
+      "async": false
+    },
+    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\components\\ProjectActions.tsx": {
+      "id": "(app-client)/./components/ProjectActions.tsx",
+      "name": "*",
+      "chunks": [
+        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
       ],
       "async": false
     }

@@ -28,7 +28,8 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
                         w-full bottom-0 
                         bg-slate-100 lg:px-40 px-8 pt-14 pb-72 
                         overflow-auto">
-                {children}</div>
+                {children}
+            </div>
         </div>
     )
 }
