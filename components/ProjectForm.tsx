@@ -14,7 +14,6 @@ type Props = {
     session: SessionInterface
 }
 
-
 const ProjectForm = ({ type, session }: Props) => {
     const router = useRouter()
     const [isSubmitting, setSubitting] = useState(false)
