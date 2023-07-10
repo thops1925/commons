@@ -1,6 +1,8 @@
 import { ProjectInterface } from "@/common";
+import Categories from "@/components/Categories";
+import LoadMore from "@/components/LoadMore";
 import ProjectCard from "@/components/ProjectCard";
-import { fetchAllProject } from "@/lib/actions";
+import { fetchAllProjects } from "@/lib/actions";
 
 type ProjectSearch = {
   projectSearch: {
@@ -14,15 +16,29 @@ type ProjectSearch = {
   },
 }
 
-export default async function Home() {
-  const data = await fetchAllProject() as ProjectSearch
+type searchParams = {
+  category?: string
+  endcursor?: string
+}
+
+type Props = {
+  searchParams: searchParams
+}
+
+// force refresh
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+const Home = async ({ searchParams: { category, endcursor } }: Props) => {
+
+  const data = await fetchAllProjects(category, endcursor) as ProjectSearch
   const projectsToDisplay = data?.projectSearch?.edges || [];
 
 
   if (projectsToDisplay.length === 0) {
     return (
       <section className="flex items-center justify-start flex-col g:px-20 py-6 px-5">
-        {/* <Categories /> */}
+        <Categories />
 
         <p className="w-full  my-10 px-2 text-center">No projects found, go create some first.</p>
       </section>
@@ -32,7 +48,7 @@ export default async function Home() {
 
   return (
     <section className="mb-16 flex flex-col items-start justify-start px-3">
-      <h1>Category</h1>
+      <Categories />
       <section className="grid xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 mt-10 w-full">
         {projectsToDisplay.map(({ node }: { node: ProjectInterface }) => (
           <ProjectCard
@@ -47,7 +63,14 @@ export default async function Home() {
         ))}
 
       </section>
-      <h1>more</h1>
+
+      <LoadMore
+        startCursor={data?.projectSearch?.pageInfo.startCursor}
+        endCursor={data?.projectSearch?.pageInfo?.endCursor}
+        hasPreviousPage={data?.projectSearch?.pageInfo?.hasPreviousPage}
+        hasNextPage={data?.projectSearch?.pageInfo.hasNextPage}
+      />
     </section>
   );
 }
+export default Home;

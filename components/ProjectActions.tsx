@@ -23,14 +23,14 @@ const ProjectActions = ({ projectId }: Props) => {
 
         try {
             await deleteProject(projectId, token);
-            window.location.href = "/"
+
+            router.push("/");
         } catch (error) {
             console.error(error)
         } finally {
             setIsDeleting(false)
         }
     }
-
     return (
         <>
             <Link href={`/edit-project/${projectId}`} className="flex items-center justify-center 

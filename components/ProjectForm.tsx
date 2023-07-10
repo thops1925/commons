@@ -27,26 +27,6 @@ const ProjectForm = ({ type, session, project }: Props) => {
         category: project?.category || ''
 
     })
-    const handleFormSub = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setSubitting(true);
-        const { token } = await fetchToken()
-        try {
-            if (type === 'create') {
-                await createNewProject(form, session?.user?.id, token)
-                router.push('/')
-            }
-            if (type === 'edit') {
-                await updateProject(form, session?.user?.id, token)
-                router.push('/')
-            }
-        } catch (error) {
-            console.log(error)
-
-        } finally {
-            setSubitting(false)
-        }
-    }
 
     const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -66,6 +46,29 @@ const ProjectForm = ({ type, session, project }: Props) => {
             ...prev, [fieldName]: value
         }))
     }
+
+
+    const handleFormSub = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setSubitting(true);
+        const { token } = await fetchToken()
+        try {
+            if (type === 'create') {
+                await createNewProject(form, session?.user?.id, token)
+                router.push('/')
+            }
+            if (type === 'edit') {
+                await updateProject(form, project?.id as string, token)
+                router.push('/')
+            }
+        } catch (error) {
+            alert(`Failed to ${type === "create" ? "create" : "edit"} a project. Try again!`);
+
+        } finally {
+            setSubitting(false)
+        }
+    }
+
 
     return (
         <form onSubmit={handleFormSub} className=" flex-col w-full lg:pt-24 pt-12 gap-10 text-lg max-w-5xl mx-auto flex items-start justify-start">

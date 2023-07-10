@@ -96,6 +96,22 @@
         "async": false
       }
     },
+    "(app-client)/./components/Categories.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/Categories.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
+    "(app-client)/./components/LoadMore.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/LoadMore.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
     "(app-client)/./components/Modal.tsx": {
       "*": {
         "id": "(sc_client)/./components/Modal.tsx",
@@ -107,22 +123,6 @@
     "(app-client)/./components/ProjectActions.tsx": {
       "*": {
         "id": "(sc_client)/./components/ProjectActions.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./components/ProjectForm.tsx": {
-      "*": {
-        "id": "(sc_client)/./components/ProjectForm.tsx",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js": {
-      "*": {
-        "id": "(sc_client)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js",
         "name": "*",
         "chunks": [],
         "async": false
@@ -311,7 +311,7 @@
       "id": "(app-client)/./node_modules/next/dist/client/image.js",
       "name": "*",
       "chunks": [
-        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
+        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
       ],
       "async": false
     },
@@ -319,7 +319,7 @@
       "id": "(app-client)/./node_modules/next/dist/client/image.js",
       "name": "*",
       "chunks": [
-        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
+        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
       ],
       "async": false
     },
@@ -343,7 +343,7 @@
       "id": "(app-client)/./node_modules/next/dist/shared/lib/head.js",
       "name": "*",
       "chunks": [
-        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
+        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
       ],
       "async": false
     },
@@ -351,7 +351,23 @@
       "id": "(app-client)/./node_modules/next/dist/shared/lib/head.js",
       "name": "*",
       "chunks": [
-        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
+        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
+      ],
+      "async": false
+    },
+    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\components\\Categories.tsx": {
+      "id": "(app-client)/./components/Categories.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
+      ],
+      "async": false
+    },
+    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\components\\LoadMore.tsx": {
+      "id": "(app-client)/./components/LoadMore.tsx",
+      "name": "*",
+      "chunks": [
+        "app/page:static/chunks/app/page.js"
       ],
       "async": false
     },
@@ -359,7 +375,7 @@
       "id": "(app-client)/./components/Modal.tsx",
       "name": "*",
       "chunks": [
-        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
+        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
       ],
       "async": false
     },
@@ -368,30 +384,6 @@
       "name": "*",
       "chunks": [
         "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
-      ],
-      "async": false
-    },
-    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\components\\ProjectForm.tsx": {
-      "id": "(app-client)/./components/ProjectForm.tsx",
-      "name": "*",
-      "chunks": [
-        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
-      ],
-      "async": false
-    },
-    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\node_modules\\next\\dist\\shared\\lib\\lazy-dynamic\\dynamic-no-ssr.js": {
-      "id": "(app-client)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js",
-      "name": "*",
-      "chunks": [
-        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
-      ],
-      "async": false
-    },
-    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\node_modules\\next\\dist\\esm\\shared\\lib\\lazy-dynamic\\dynamic-no-ssr.js": {
-      "id": "(app-client)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js",
-      "name": "*",
-      "chunks": [
-        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
       ],
       "async": false
     }
@@ -411,14 +403,6 @@
       "files": []
     },
     "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\project\\[id]\\page": {
-      "modules": [],
-      "files": []
-    },
-    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\create-project\\page": {
-      "modules": [],
-      "files": []
-    },
-    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\edit-project\\[id]\\page": {
       "modules": [],
       "files": []
     }
