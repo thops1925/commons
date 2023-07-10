@@ -1,5 +1,5 @@
 import { ProjectForm } from "@/common";
-import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectsQuery } from "@/graphql";
+import { createProjectMutation, createUserMutation, deleteProjectMutation, getProjectByIdQuery, getProjectsOfUserQuery, getUserQuery, projectsQuery, updateProjectMutation } from "@/graphql";
 import { GraphQLClient } from "graphql-request";
 
 
@@ -27,7 +27,7 @@ export const getUser = (email: string) => {
 };
 
 
-export const createUser = (name: string, email: string, avatarUrl: string) => {
+export const createUser = async (name: string, email: string, avatarUrl: string) => {
     client.setHeader("x-api-key", apiKey);
 
     const variables = {
@@ -47,6 +47,7 @@ export const fetchToken = async () => {
         throw error
     }
 }
+
 export const uploadImage = async (imagePath: string) => {
     try {
         const res = await fetch(`${serverUrl}/api/upload`, {
@@ -59,6 +60,57 @@ export const uploadImage = async (imagePath: string) => {
 
     }
 }
+
+export const fetchAllProject = async (category?: string, endcursor?: string) => {
+    client.setHeader("x-api-key", apiKey);
+    return makeGraphQLRequest(projectsQuery, { category, endcursor })
+}
+
+
+export const getProjectDetails = async (id: string) => {
+    client.setHeader("x-api-key", apiKey);
+    return makeGraphQLRequest(getProjectByIdQuery, { id });
+}
+
+export const getUserProjects = async (id: string, last?: number) => {
+    client.setHeader("x-api-key", apiKey);
+    return makeGraphQLRequest(getProjectsOfUserQuery, { id, last });
+};
+
+
+export const deleteProject = async (id: string, token: string) => {
+    client.setHeader("Authorization", `Bearer ${token}`);
+    return makeGraphQLRequest(deleteProjectMutation, { id });
+};
+
+export const updateProject = async (form: ProjectForm, projectId: string, token: string) => {
+    function isBase64DataURL(value: string) {
+        const base64Regex = /^data:image\/[a-z]+;base64,/;
+        return base64Regex.test(value);
+    }
+
+    let updatedForm = { ...form };
+
+    const isUploadingNewImage = isBase64DataURL(form.image);
+
+    if (isUploadingNewImage) {
+        const imageUrl = await uploadImage(form.image);
+
+        if (imageUrl.url) {
+            updatedForm = { ...updatedForm, image: imageUrl.url };
+        }
+    }
+
+    client.setHeader("Authorization", `Bearer ${token}`);
+
+    const variables = {
+        id: projectId,
+        input: updatedForm,
+    };
+
+    return makeGraphQLRequest(updateProjectMutation, variables);
+};
+
 export const createNewProject = async (form: ProjectForm, creatorId: string, token: string) => {
     const imageUrl = await uploadImage(form.image);
     if (imageUrl.url) {
@@ -77,25 +129,3 @@ export const createNewProject = async (form: ProjectForm, creatorId: string, tok
         return makeGraphQLRequest(createProjectMutation, variables);
     }
 }
-
-export const fetchAllProject = async (category?: string, endcursor?: string) => {
-    client.setHeader("x-api-key", apiKey);
-    return makeGraphQLRequest(projectsQuery, { category, endcursor })
-}
-
-
-export const getProjectDetails = (id: string) => {
-    client.setHeader("x-api-key", apiKey);
-    return makeGraphQLRequest(getProjectByIdQuery, { id });
-}
-
-export const getUserProjects = (id: string, last?: number) => {
-    client.setHeader("x-api-key", apiKey);
-    return makeGraphQLRequest(getProjectsOfUserQuery, { id, last });
-};
-
-
-export const deleteProject = (id: string, token: string) => {
-    client.setHeader("Authorization", `Bearer ${token}`);
-    return makeGraphQLRequest(deleteProjectMutation, { id });
-};

@@ -14,7 +14,7 @@ type Props = {
 
 const ProjectCard = ({ id, key, image, name, avatarUrl, userId, title }: Props) => {
     return (
-        <div className='flex items-center justify-center flex-col rounded-sm drop-shadow-md'>
+        <div className='flex items-center justify-center flex-col rounded-sm drop-shadow-md' key={key}>
             <Link href={`/project/${id}`} className='flex items-center justify-center group relative w-full h-full'>
                 <Image src={image} alt='image' width={414} height={314} className='w-full h-full object-contain rounded-sm blur-0 drop-shadow-sm' />
                 <div className='hidden group-hover:flex justify-end items-end w-full h-1/3

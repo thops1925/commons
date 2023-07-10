@@ -1,29 +1,30 @@
 "use client"
-import { SessionInterface } from "@/common"
+import { ProjectInterface, SessionInterface } from "@/common"
 import Image from "next/image"
 import { ChangeEvent, useState } from "react"
 import FormField from "./FormField"
 import Button from "./Button"
 import CustomMenu from "./CustomMenu"
 import { categoryFilters } from "@/constant"
-import { createNewProject, fetchToken } from "@/lib/actions"
+import { createNewProject, fetchToken, updateProject, } from "@/lib/actions"
 import { useRouter } from "next/navigation"
 
 type Props = {
     type: string,
     session: SessionInterface
+    project?: ProjectInterface
 }
 
-const ProjectForm = ({ type, session }: Props) => {
+const ProjectForm = ({ type, session, project }: Props) => {
     const router = useRouter()
     const [isSubmitting, setSubitting] = useState(false)
     const [form, setForm] = useState({
-        image: '',
-        title: '',
-        description: '',
-        liveSiteUrl: '',
-        githubUrl: '',
-        category: ''
+        title: project?.title || '',
+        description: project?.description || '',
+        image: project?.image || '',
+        liveSiteUrl: project?.liveSiteUrl || '',
+        githubUrl: project?.githubUrl || '',
+        category: project?.category || ''
 
     })
     const handleFormSub = async (e: React.FormEvent) => {
@@ -35,9 +36,15 @@ const ProjectForm = ({ type, session }: Props) => {
                 await createNewProject(form, session?.user?.id, token)
                 router.push('/')
             }
+            if (type === 'edit') {
+                await updateProject(form, session?.user?.id, token)
+                router.push('/')
+            }
         } catch (error) {
             console.log(error)
 
+        } finally {
+            setSubitting(false)
         }
     }
 

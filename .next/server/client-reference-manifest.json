@@ -104,6 +104,14 @@
         "async": false
       }
     },
+    "(app-client)/./components/ProjectActions.tsx": {
+      "*": {
+        "id": "(sc_client)/./components/ProjectActions.tsx",
+        "name": "*",
+        "chunks": [],
+        "async": false
+      }
+    },
     "(app-client)/./components/ProjectForm.tsx": {
       "*": {
         "id": "(sc_client)/./components/ProjectForm.tsx",
@@ -115,14 +123,6 @@
     "(app-client)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js": {
       "*": {
         "id": "(sc_client)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js",
-        "name": "*",
-        "chunks": [],
-        "async": false
-      }
-    },
-    "(app-client)/./components/ProjectActions.tsx": {
-      "*": {
-        "id": "(sc_client)/./components/ProjectActions.tsx",
         "name": "*",
         "chunks": [],
         "async": false
@@ -311,7 +311,7 @@
       "id": "(app-client)/./node_modules/next/dist/client/image.js",
       "name": "*",
       "chunks": [
-        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
+        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
       ],
       "async": false
     },
@@ -319,7 +319,7 @@
       "id": "(app-client)/./node_modules/next/dist/client/image.js",
       "name": "*",
       "chunks": [
-        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
+        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
       ],
       "async": false
     },
@@ -343,7 +343,7 @@
       "id": "(app-client)/./node_modules/next/dist/shared/lib/head.js",
       "name": "*",
       "chunks": [
-        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
+        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
       ],
       "async": false
     },
@@ -351,12 +351,20 @@
       "id": "(app-client)/./node_modules/next/dist/shared/lib/head.js",
       "name": "*",
       "chunks": [
-        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
+        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
       ],
       "async": false
     },
     "C:\\Users\\THOP\\Desktop\\2023-project\\common\\components\\Modal.tsx": {
       "id": "(app-client)/./components/Modal.tsx",
+      "name": "*",
+      "chunks": [
+        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
+      ],
+      "async": false
+    },
+    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\components\\ProjectActions.tsx": {
+      "id": "(app-client)/./components/ProjectActions.tsx",
       "name": "*",
       "chunks": [
         "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
@@ -367,7 +375,7 @@
       "id": "(app-client)/./components/ProjectForm.tsx",
       "name": "*",
       "chunks": [
-        "app/create-project/page:static/chunks/app/create-project/page.js"
+        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
       ],
       "async": false
     },
@@ -375,7 +383,7 @@
       "id": "(app-client)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js",
       "name": "*",
       "chunks": [
-        "app/create-project/page:static/chunks/app/create-project/page.js"
+        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
       ],
       "async": false
     },
@@ -383,15 +391,7 @@
       "id": "(app-client)/./node_modules/next/dist/shared/lib/lazy-dynamic/dynamic-no-ssr.js",
       "name": "*",
       "chunks": [
-        "app/create-project/page:static/chunks/app/create-project/page.js"
-      ],
-      "async": false
-    },
-    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\components\\ProjectActions.tsx": {
-      "id": "(app-client)/./components/ProjectActions.tsx",
-      "name": "*",
-      "chunks": [
-        "app/project/[id]/page:static/chunks/app/project/[id]/page.js"
+        "app/edit-project/[id]/page:static/chunks/app/edit-project/[id]/page.js"
       ],
       "async": false
     }
@@ -410,11 +410,15 @@
       "modules": [],
       "files": []
     },
+    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\project\\[id]\\page": {
+      "modules": [],
+      "files": []
+    },
     "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\create-project\\page": {
       "modules": [],
       "files": []
     },
-    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\project\\[id]\\page": {
+    "C:\\Users\\THOP\\Desktop\\2023-project\\common\\app\\edit-project\\[id]\\page": {
       "modules": [],
       "files": []
     }

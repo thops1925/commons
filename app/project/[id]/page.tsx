@@ -40,7 +40,8 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
                             </Link>
                             <Image src="/dot.svg" width={4} height={4} alt="dot" />
 
-                            <Link href={`/?category=${projectDetails.category}`} className="text-sky-500 font-semibold">
+                            <Link href={`/?category=${projectDetails.category}`}
+                                className="text-sky-500 font-semibold">
                                 {projectDetails?.category}
                             </Link>
                         </div>
@@ -59,8 +60,8 @@ const Project = async ({ params: { id } }: { params: { id: string } }) => {
                 <Image
                     src={`${projectDetails?.image}`}
                     className="object-cover rounded-2xl blur-0"
-                    width={1064}
-                    height={798}
+                    width={800}
+                    height={800}
                     alt="poster"
                 />
             </section>
